@@ -17,3 +17,4 @@ Controle de quantidade em estoque
 O sistema deverá receber:
 
 Dados do produto (nome, preço, quantidade)
+Custo ( venda do produto e reposição do produto)
