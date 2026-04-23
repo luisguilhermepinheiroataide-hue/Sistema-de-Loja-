@@ -1,4 +1,4 @@
----Tabela loja (Gabi e Tabbi)
+---Tabela loja
 
 CREATE TABLE loja (
 	id_loja SERIAL PRIMARY KEY,
@@ -7,7 +7,7 @@ CREATE TABLE loja (
 	cnpj VARCHAR(20),
 	n_dono VARCHAR (100)
 );
----Tabela Cliente (Gabi e Tabbi)
+---Tabela Cliente
 
 CREATE TABLE cliente (
 	id_cliente SERIAL PRIMARY KEY,
@@ -15,15 +15,14 @@ CREATE TABLE cliente (
 	telefone_cliente VARCHAR(20), 
 	cpf VARCHAR(12)
 );
----Tabela Produto (Gabi e Tabbi)
-
+---Tabela Produto
 CREATE TABLE produto (
 	id_produto SERIAL PRIMARY KEY,
 	nome_produto VARCHAR(100) NOT NULL,
 	quantidade INT NOT NULL, 
 	preco NUMERIC(10,2) NOT NULL
 );
--- Tabela Venda (Gabi e Tabbi)
+-- Tabela Venda
 CREATE TABLE venda (
     id_venda SERIAL PRIMARY KEY,
     id_loja INT NOT NULL,
@@ -38,7 +37,7 @@ CREATE TABLE venda (
         FOREIGN KEY (id_cliente)
         REFERENCES cliente(id_cliente)
 );
--- Tabela item_venda (Gabi e Tabbi)
+-- Tabela item_venda
 CREATE TABLE item_venda (
     id_item SERIAL PRIMARY KEY,
     id_venda INT NOT NULL,
@@ -52,6 +51,18 @@ CREATE TABLE item_venda (
         ON DELETE CASCADE,
 
     CONSTRAINT fk_produto
+        FOREIGN KEY (id_produto)
+        REFERENCES produto(id_produto)
+);
+
+CREATE TABLE movimentacao (
+    id_movimentacao SERIAL PRIMARY KEY,
+    id_produto INT NOT NULL,
+    tipo_movimentacao VARCHAR(20) NOT NULL,
+    quantidade INT NOT NULL,
+    data_movimentacao DATE NOT NULL,
+
+    CONSTRAINT fk_mov_produto
         FOREIGN KEY (id_produto)
         REFERENCES produto(id_produto)
 );
